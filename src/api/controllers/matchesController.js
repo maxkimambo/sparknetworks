@@ -1,6 +1,6 @@
 const log = require('./../../utils/logger');
 // const validation = require('../validation');
-
+const data = require('./../../../db/matches');
 
 const Controller = {
   matches: (req, res) => {
@@ -10,7 +10,7 @@ const Controller = {
 
     log.info('Matches route requested', ctx);
 
-    res.send('Matches controller');
+    res.send(data);
   },
 };
 
