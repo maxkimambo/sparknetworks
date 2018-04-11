@@ -4,6 +4,7 @@ const context = require('../utils/context');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+
 const app = express();
 
 const publicFolder = path.join(`${__dirname}./../public/`);
@@ -13,7 +14,9 @@ app.use(express.static(publicFolder));
 const routes = require('./routes/index');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false,
+}));
 app.use(context);
 
 log.info('Setting up routes.....');

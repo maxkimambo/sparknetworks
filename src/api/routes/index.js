@@ -9,9 +9,9 @@ const setup = (app) => {
   logger.info('Registered root route');
   app.use('/', root);
 
+  // app.use('/matches', matches);
+  // logger.info('Registered example routes');
   app.use('/matches', matches);
-  logger.info('Registered example routes');
-
   app.use('/health', health);
   logger.info('Registered health routes');
 
