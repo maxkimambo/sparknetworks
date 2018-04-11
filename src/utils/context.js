@@ -1,6 +1,6 @@
 const uuidv4 = require('uuid/v4');
 
-module.exports = function setContext(req, res, next) {
+function setContext(req, res, next) {
   const uid = uuidv4();
   const context = {
     id: uid,
@@ -10,4 +10,6 @@ module.exports = function setContext(req, res, next) {
   // add request id to the response as well
   res.setHeader('X-Request-Id', uid);
   next();
-};
+}
+
+module.exports = setContext;

@@ -1,19 +1,19 @@
 const healthCheckController = (clients) => {
   let results = [];
 
-  let _clients = [];
+  let clientAdapters = [];
   if (!clients) {
     Promise.reject(new Error('No health check clients passed'));
   }
   if (Array.isArray(clients)) {
-    _clients = clients;
+    clientAdapters = clients;
   } else {
     const clientsArray = [];
     clientsArray.push(clients);
-    _clients = clientsArray;
+    clientAdapters = clientsArray;
   }
 
-  results = _clients.map(client => client.health());
+  results = clientAdapters.map(client => client.health());
 
   return Promise.all(results);
 };

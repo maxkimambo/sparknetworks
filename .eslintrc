@@ -9,12 +9,10 @@
     },
     "extends": "airbnb",
     "rules": {
-      "func-names": ["error", "never"]
-    }, 
-    "overrides": [
-        {
-            "files": ["src/*.js"], 
-            "excludedFiles": ["*.yml", "*.yaml", "src/public/doc/*", "node_modules/*"]
-        }
-    ]
+        "func-names": ["error", "never"]
+    },
+    "overrides": [{
+        "files": ["src/*.js"],
+        "excludedFiles": ["*.yml", "*.yaml", "src/public/doc/*", "node_modules/*"]
+    }]
 }

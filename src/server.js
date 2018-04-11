@@ -4,9 +4,7 @@
 const app = require('./api/app');
 const debug = require('debug')('base:server');
 const http = require('http');
-const config = require('./config');
-
-
+const normalizePort = require('normalize-port');
 const logger = require('./utils/logger');
 
 /**
@@ -23,33 +21,6 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -87,3 +58,13 @@ function onListening() {
   debug(`Listening on ${bind}`);
   logger.info(`Service running on ${bind}`);
 }
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+

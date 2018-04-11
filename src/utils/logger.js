@@ -18,9 +18,10 @@ const log = function () {
     ],
     exitOnError: false,
   });
-
+  // eslint-disable-next-line no-shadow
   const log = {};
 
+  /* eslint-disable */
   LOG_LEVELS.forEach((level) => {
     log[level] = log[level.toUpperCase()] = (message, ctx) => {
       logger.log(
@@ -31,7 +32,7 @@ const log = function () {
       );
     };
   });
-
+  /* eslint-enable */
   return log;
 };
 

@@ -7,7 +7,7 @@ const health = async () => {
   try {
     // Add required health checks here.
     service.status = HEALTH_STATUS_OK;
-    return service;
+    // here we should have a condition doing the actual healthcheck
   } catch (err) {
     service.status = HEALTH_STATUS_FAIL;
     return service;
