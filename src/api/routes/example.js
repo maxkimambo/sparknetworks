@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
 
-const exController = require("../controllers/exampleController");
+const exController = require('../controllers/exampleController');
 
 // please only add routes here
 // business logic should be in controllers functions or their dependecies
@@ -23,7 +24,7 @@ const exController = require("../controllers/exampleController");
  *       "error": "ExampleNotFound"
  *     }
  */
-router.get("/", exController.example);
+router.get('/', exController.example);
 
 
 module.exports = router;

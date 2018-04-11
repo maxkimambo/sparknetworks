@@ -1,14 +1,15 @@
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
-const logger = require("../../utils/logger");
+const logger = require('../../utils/logger');
 
-router.get("/", function(req, res) {
+router.get('/', (req, res) => {
   // example of getting request context
-  let ctx = req.app_context;
+  const ctx = req.app_context;
 
-  logger.info("Requested root route", ctx);
+  logger.info('Requested root route', ctx);
 
-  res.send({ title: "Express" });
+  res.send({ title: 'Express' });
 });
 
 module.exports = router;

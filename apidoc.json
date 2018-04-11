@@ -1,7 +1,7 @@
 {
-  "name": "NodeJS Starter",
+  "name": "Spark",
   "version": "0.1.0",
-  "description": "NodeJS Starter project for microservices",
-  "title": "NodeJS starter",
+  "description": "Spark networks coding challenge",
+  "title": "Spark networks coding challenge",
   "url": "http://localhost:3000"
 }

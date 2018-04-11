@@ -1,8 +1,8 @@
-const healthCheck = require("./healthAdapter");
+const healthCheck = require('./healthAdapter');
 
 /** Combines all health check clients into an array to be passed to health check controller */
 const healthChecks = () => {
-  let checks = [];
+  const checks = [];
   checks.push(healthCheck);
   return checks;
 };

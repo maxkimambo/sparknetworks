@@ -1,4 +1,5 @@
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
 
 /**
@@ -26,8 +27,8 @@ const router = express.Router();
  *       "error": "UserNotFound"
  *     }
  */
-router.get("/", function(req, res) {
-  res.send("respond with a resource");
+router.get('/', (req, res) => {
+  res.send('respond with a resource');
 });
 
 module.exports = router;

@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
-const healthCheckClients = require("../../healthchecks")();
-const healthCheckController = require("./../../utils/healthcheckController");
+const healthCheckClients = require('../../healthchecks')();
+const healthCheckController = require('./../../utils/healthcheckController');
 
 /**
  * @api {get} /health health
@@ -20,10 +21,10 @@ const healthCheckController = require("./../../utils/healthcheckController");
  *    }
  *
  */
-router.get("/", async function(req, res) {
+router.get('/', async (req, res) => {
   const results = await healthCheckController(healthCheckClients);
   res.send({
-    status: results
+    status: results,
   });
 });
 module.exports = router;

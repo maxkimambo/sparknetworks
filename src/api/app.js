@@ -1,41 +1,41 @@
-const express = require("express");
-const log = require("../utils/logger");
-const context = require("../utils/context");
-const bodyParser = require("body-parser");
-const path = require("path");
+const express = require('express');
+const log = require('../utils/logger');
+const context = require('../utils/context');
+const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
-const public_folder = path.join(__dirname + "./../public/");
+const publicFolder = path.join(`${__dirname}./../public/`);
 
-app.use(express.static(public_folder));
+app.use(express.static(publicFolder));
 
-const routes = require("./routes/index");
+const routes = require('./routes/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(context);
 
-log.info("Setting up routes.....");
+log.info('Setting up routes.....');
 routes.setup(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const ctx = req.app_context;
   log.warn(`URL Not found: ${req.url}`, ctx);
-  res.status(404).send("Not found");
-  let err = new Error("Not found");
+  res.status(404).send('Not found');
+  const err = new Error('Not found');
   err.status = 404;
-  err.message = "Url not found";
+  err.message = 'Url not found';
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res) {
-  const env = req.app.get("env");
-  if (env === "development") {
+app.use((err, req, res) => {
+  const env = req.app.get('env');
+  if (env === 'development') {
     res.status(err.status || 500);
-    res.send("error" + err.message);
+    res.send(`error${err.message}`);
   }
   log.err(err);
 });

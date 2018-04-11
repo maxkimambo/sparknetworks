@@ -1,2 +1,3 @@
-const exampleValidate = require("./exampleSchema");
+const exampleValidate = require('./exampleSchema');
+
 module.exports = { exampleValidate };

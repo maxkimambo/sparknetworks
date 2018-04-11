@@ -1,0 +1,7 @@
+src/public/doc/*
+*.yml 
+*.yaml 
+/node_modules/* 
+*.json
+Dockerfile
+*.md

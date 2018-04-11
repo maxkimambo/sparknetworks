@@ -1,21 +1,21 @@
 /**
  * Module dependencies.
  */
-const app = require("./api/app");
-const debug = require("debug")("base:server");
-const http = require("http");
-const config = require("./config");
+const app = require('./api/app');
+const debug = require('debug')('base:server');
+const http = require('http');
+const config = require('./config');
 
 
-const logger = require("./utils/logger");
+const logger = require('./utils/logger');
 
 /**
  * Get port from environment
  */
 
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || '3000');
 
-app.set("port", port);
+app.set('port', port);
 
 /**
  * Create HTTP server.
@@ -28,8 +28,8 @@ const server = http.createServer(app);
  */
 
 server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -56,20 +56,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== "listen") {
+  if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case "EACCES":
-      logger.error(bind + " requires elevated privileges");
+    case 'EACCES':
+      logger.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
-    case "EADDRINUSE":
-      logger.error(bind + " is already in use");
+    case 'EADDRINUSE':
+      logger.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -83,7 +83,7 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-  debug("Listening on " + bind);
-  logger.info("Service running on " + bind);
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  debug(`Listening on ${bind}`);
+  logger.info(`Service running on ${bind}`);
 }
