@@ -2,29 +2,29 @@ const express = require('express');
 
 const router = express.Router();
 
-const exController = require('../controllers/exampleController');
+const matchesController = require('../controllers/matchesController');
 
 // please only add routes here
 // business logic should be in controllers functions or their dependecies
 
 /**
- * @api {get} /example/ Request endpoint collection
- * @apiGroup Example
+ * @api {get} /matches/ Request endpoint collection
+ * @apiGroup Matches
  * @apiSuccess {String} Success message.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "Example controller"
+ *       "Matches data"
  *     }
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": "ExampleNotFound"
+ *       "error": "MatchesNotFound"
  *     }
  */
-router.get('/', exController.example);
+router.get('/', matchesController.matches);
 
 
 module.exports = router;

@@ -3,14 +3,14 @@ const log = require('./../../utils/logger');
 
 
 const Controller = {
-  example: (req, res) => {
+  matches: (req, res) => {
     // declare context of this request so that we can trace it in logs
     // add logs with varying levels e.g info, debug, warn, error
     const ctx = req.app_context;
 
-    log.info('example route requested', ctx);
+    log.info('Matches route requested', ctx);
 
-    res.send('Example controller');
+    res.send('Matches controller');
   },
 };
 
