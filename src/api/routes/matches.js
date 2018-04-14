@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-// const matchesController = require('../controllers/matchesController');
+const matchesController = require('../controllers/matchesController');
 
 // please only add routes here
 // business logic should be in controllers functions or their dependecies
@@ -24,32 +24,6 @@ const router = express.Router();
  *       "error": "MatchesNotFound"
  *     }
  */
-const graphQlHttp = require('express-graphql');
-const data = require('../../../db/matches');
-const {
-    buildSchema
-} = require('graphql');
-
-const rootData = {
-    matches: () => {
-        return JSON.stringify(data);
-    },
-};
-
-const graphSchema = buildSchema(' type Query { matches: String } ');
-
-// app.use('/graphql', graphQlHttp({
-//     schema: graphSchema,
-//     rootValue: rootData,
-//     graphiql: true,
-// }));
-
-
-router.use('/query', graphQlHttp({
-    schema: graphSchema,
-    rootValue: rootData,
-    graphiql: true,
-}));
-
+router.use('/', matchesController.matches);
 
 module.exports = router;
