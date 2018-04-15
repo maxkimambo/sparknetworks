@@ -1,27 +1,25 @@
 const log = require('./../../utils/logger');
-// const validation = require('../validation');
-const data = require('./../../../db/matches');
+
+const matchesService = require('./../services/matchesService');
 
 const parseRange = function (range) {
-  const rangeItems = range.split('-');
+  const r = range || ''; 
+  const rangeItems = r.split('-');
   try {
     const lower = parseInt(rangeItems[0], 10);
     const upper = parseInt(rangeItems[1], 10);
     return {
       lower,
       upper,
-    } 
-
+    };
   } catch (error) {
     log.error(`Couldnt parse range ${range}`);
   }
   return {
     lower: 0,
     upper: 0,
-  }
-
-}
-
+  };
+};
 const getFilters = function (req) {
   const {
     photo,
@@ -44,13 +42,7 @@ const getFilters = function (req) {
   };
 
   return filters;
-}
-
-const filterData = function (query) {
-  console.log(query)
-  return data;
-}
-
+};
 
 const Controller = {
   matches: (req, res) => {
@@ -58,13 +50,14 @@ const Controller = {
     // add logs with varying levels e.g info, debug, warn, error
     const ctx = req.app_context;
     const filters = getFilters(req);
-    const filteredData = filterData(filters);
+    log.debug(`Request: filters ${filters}`, ctx);
+    const filteredData = matchesService.getMatches(filters);
 
 
     log.info('Matches route requested', ctx);
 
     res.send(filteredData);
-  }
+  },
 };
 
 module.exports = Controller;
