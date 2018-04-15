@@ -9,7 +9,9 @@
     },
     "extends": "airbnb",
     "rules": {
-        "func-names": ["error", "never"]
+        "func-names": ["error", "never"], 
+        "indent":"off",
+        "no-trailing-spaces":"off"
     },
     "overrides": [{
         "files": ["src/*.js"],
