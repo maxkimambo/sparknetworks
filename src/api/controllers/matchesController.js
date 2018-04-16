@@ -70,10 +70,10 @@ const Controller = {
     // add logs with varying levels e.g info, debug, warn, error
     const ctx = req.app_context;
     const filters = getFilters(req);
-    log.debug(`Request: filters ${filters}`, ctx);
+    log.debug(`Request: filters ${JSON.stringify(filters)}`, ctx);
     const currentUser = getCurrentUser(); 
     const filteredData = matchesService.getMatches(filters, currentUser);
-
+   
 
     log.info('Matches route requested', ctx);
 

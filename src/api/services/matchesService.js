@@ -5,17 +5,26 @@ const matchesService = function () {
     let currentUser;
     /** Helper  functions for filtering data */
     const hasPhoto = function (user) {
-        if (!user.main_photo || user.main_photo.length > 0) {
-            return true;
+        if (filters.photo) {
+            if (!user.main_photo || user.main_photo.length > 0) {
+                return true;
+            }
+            return false;
         }
-        return false;
+        return true;
     };
     const isFavourite = function (user) {
-        return user.favourite;
+        if (filters.favourites) {
+            return user.favourite;
+        }
+        return true;
     };
 
     const hasContacts = function (user) {
-        return user.contacts_exchanged > 0;
+        if (filters.contacts) {
+            return user.contacts_exchanged > 0;
+        }
+        return true;
     };
     const ageFilter = function (user) {
         return user.age >= filters.age.lower && user.age <= filters.age.upper;
@@ -28,24 +37,18 @@ const matchesService = function () {
 
 
     /** Calculates distance between two points
-     *  Ref: https://www.geodatasource.com/developers/javascript
+     *  Ref: http://snipplr.com/view/25479/calculate-distance-between-two-points-with-latitude-and-longitude-coordinates/
      */
-    const distance = function (lat1, lon1, lat2, lon2, unit) {
-        const radlat1 = (Math.PI * lat1) / 180;
-        const radlat2 = (Math.PI * lat2) / 180;
-        const theta = lon1 - lon2;
-        const radtheta = (Math.PI * theta) / 180;
-        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        dist = Math.acos(dist);
-        dist = (dist * 180) / Math.PI;
-        dist = dist * 60 * 1.1515;
-        if (unit === 'K') {
-            dist *= 1.609344;
-        }
-        if (unit === 'N') {
-            dist *= 0.8684;
-        }
-        return dist;
+    const distance = function (lat1, lon1, lat2, lon2) {
+        const RADIUS = 6371; // earth radius
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const dist = RADIUS * c;
+        return Math.round(dist * 1000); // distance in meters
     };
 
     const distanceFilter = function (user) {
@@ -54,9 +57,11 @@ const matchesService = function () {
             user.city.lon,
             currentUser.city.lat,
             currentUser.city.lon,
+
         );
-        return currentDistance >= filters.distance.lower &&
-            currentDistance <= filters.distance.upper;
+        const isWithinRange = currentDistance <= (filters.distance * 1000);
+
+        return isWithinRange;
     };
     // end helper functions 
 
