@@ -31,7 +31,6 @@ const matchesService = function () {
      *  Ref: https://www.geodatasource.com/developers/javascript
      */
     const distance = function (lat1, lon1, lat2, lon2, unit) {
-
         const radlat1 = (Math.PI * lat1) / 180;
         const radlat2 = (Math.PI * lat2) / 180;
         const theta = lon1 - lon2;
@@ -51,29 +50,30 @@ const matchesService = function () {
 
     const distanceFilter = function (user) {
         const currentDistance = distance(
-                                            user.city.lat, 
-                                            user.city.lon, 
-                                            currentUser.city.lat, 
-                                            currentUser.city.lon,
-                                        );
-        return currentDistance >= filters.distance.lower
-                 && currentDistance <= filters.distance.upper;
+            user.city.lat,
+            user.city.lon,
+            currentUser.city.lat,
+            currentUser.city.lon,
+        );
+        return currentDistance >= filters.distance.lower &&
+            currentDistance <= filters.distance.upper;
     };
     // end helper functions 
 
     const filterData = function (_filters) {
         filters = _filters;
         const filteredData = data.filter(hasPhoto)
-                                    .filter(isFavourite)
-                                    .filter(hasContacts)
-                                    .filter(ageFilter)
-                                    .filter(compatibilityFilter)
-                                    .filter(distanceFilter);
+            .filter(isFavourite)
+            .filter(hasContacts)
+            .filter(ageFilter)
+            .filter(compatibilityFilter)
+            .filter(distanceFilter);
 
         return filteredData;
     };
 
-    const getMatches = function (_filters) {
+    const getMatches = function (_filters, _currentUser) {
+        currentUser = _currentUser;
         const matches = filterData(_filters);
         return matches;
     };
