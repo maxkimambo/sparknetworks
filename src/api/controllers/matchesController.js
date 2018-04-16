@@ -14,7 +14,7 @@ const getCurrentUser = function () {
       lat: 51.5541145,
       lon: -1.7976947,
     }, 
-    main_photo: 'https://randomuser.me/api/portraits/men/40.jpg',
+    main_photo: 'https://randomuser.me/api/portraits/men/5.jpg',
     compatibility_score: 0.89,
     contacts_exchanged: 2,
     favourite: false,

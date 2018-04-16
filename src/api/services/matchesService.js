@@ -57,7 +57,6 @@ const matchesService = function () {
             user.city.lon,
             currentUser.city.lat,
             currentUser.city.lon,
-
         );
         const isWithinRange = currentDistance <= (filters.distance * 1000);
 
