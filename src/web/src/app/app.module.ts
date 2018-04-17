@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import { FilterComponent } from './components/app.filter';
 import { HeaderComponent} from './components/app.header';
 import { JumbotronComponent} from './components/app.jumbotron';
 import { FooterComponent } from './components/app.footer';
@@ -10,7 +10,7 @@ import { CardComponent } from './components/app.card';
 
 @NgModule({
   declarations: [
-   
+    FilterComponent,
     HeaderComponent,
     JumbotronComponent,
     FooterComponent,
@@ -20,6 +20,6 @@ import { CardComponent } from './components/app.card';
     BrowserModule
   ],
   providers: [],
-  bootstrap: [ HeaderComponent, JumbotronComponent, FooterComponent, CardComponent]
+  bootstrap: [ HeaderComponent, JumbotronComponent, FooterComponent, CardComponent, FilterComponent]
 })
 export class AppModule { }
