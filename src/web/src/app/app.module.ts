@@ -10,7 +10,7 @@ import { CardComponent } from './components/app.card';
 
 @NgModule({
   declarations: [
-    AppComponent,
+   
     HeaderComponent,
     JumbotronComponent,
     FooterComponent,
@@ -20,6 +20,6 @@ import { CardComponent } from './components/app.card';
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent, HeaderComponent, JumbotronComponent, FooterComponent, CardComponent]
+  bootstrap: [ HeaderComponent, JumbotronComponent, FooterComponent, CardComponent]
 })
 export class AppModule { }
