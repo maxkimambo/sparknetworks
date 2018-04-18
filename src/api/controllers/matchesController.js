@@ -65,6 +65,33 @@ const getFilters = function (req) {
   return filters;
 };
 
+/** Transforms data to match the UI  */
+const transformData = function (_matches) {
+  // replace pics with some real faces 
+  const photoUrl = 'https://randomuser.me/api/portraits/women/';
+  let counter = 1;
+  const matches = _matches.map((m) => {
+    counter += 1;
+    return {
+      displayName: m.display_name,
+      age: m.age,
+      compatibility: m.compatibility_score,
+      contacts: m.contacts_exchanged,
+      favourite: m.favourite,
+      height: m.height_in_cm,
+      jobTitle: m.jobTitle,
+      photo: `${photoUrl}${counter}.jpg`,
+      religion: m.religion,
+      city: {
+        name: m.city.name ? m.city.name : 'N/A',
+        lon: m.city.lon ? m.city.lon : 0,
+        lat: m.city.lat ? m.city.lat : 0,
+      },
+    };
+  });
+  return matches; 
+};
+
 const Controller = {
   matches: (req, res) => {
     // declare context of this request so that we can trace it in logs
@@ -75,11 +102,11 @@ const Controller = {
     log.debug(`Request: filters ${JSON.stringify(filters)}`, ctx);
     const currentUser = getCurrentUser();
     const filteredData = matchesService.getMatches(filters, currentUser);
-
+    const transformedData = transformData(filteredData); 
 
     log.info('Matches route requested', ctx);
 
-    res.send(filteredData);
+    res.send(transformedData);
   },
 };
 

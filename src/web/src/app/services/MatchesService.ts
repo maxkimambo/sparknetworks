@@ -8,7 +8,7 @@ import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class MatchesService {
-    users: IUser[];
+    users: User[];
         constructor(private http: HttpClient){
             const Users: User[] = [
                 { displayName: "Colette",
@@ -52,9 +52,9 @@ export class MatchesService {
         return this.users; 
     }
 
-    getAllUsers():Observable<IUser[]> {
-      return this.http.get<IUser[]>('http://localhost:3000/matches')
-        .pipe(catchError(this.handleError<IUser[]>('getUsers')));
+    getAllUsers():Observable<User[]> {
+      return this.http.get<User[]>('http://localhost:9000/matches')
+        .pipe(catchError(this.handleError<User[]>('getUsers')));
        
     }
     private handleError<T> (operation = 'operation', result?: T) {
