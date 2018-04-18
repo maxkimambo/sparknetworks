@@ -39,7 +39,7 @@ const matchesService = function () {
         if (Number.isNaN(filters.compatibility.upper) || Number.isNaN(filters.compatibility.lower)) return true;
         const isCompatible = user.compatibility_score >= filters.compatibility.lower / 100 &&
         user.compatibility_score <= filters.compatibility.upper / 100;
-        console.log(isCompatible);
+        
         return isCompatible; 
     };
 
