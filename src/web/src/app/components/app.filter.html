@@ -95,7 +95,28 @@
       <!--end row-->
       <div class="row">
         <div class="col-md-11">
-          &nbsp;
+         
+          <!-- compatibility -->
+          <div class="form-check form-check-inline">
+            <label class="form-control-label" for="start-height">
+              <span class="item-label"> Compatibility</span>
+            </label>
+  
+            <select name="startCompatibility" [(ngModel)]="vm.startCompatibility" class="form-control form-control-sm" id="start-compatibility">
+              <option *ngFor="let c of compatibilityValues" [ngValue]="c">{{c}}</option>
+            </select>
+            -
+            <select name="endCompatibility" [(ngModel)]="vm.endCompatibility" class="form-control form-control-sm" id="end-compatibility">
+  
+              <option *ngFor="let c of compatibilityValues" [ngValue]="c">{{c}}</option>
+  
+  
+            </select>
+  
+  
+  
+          </div>
+          <!-- end compatibility -->
          
         </div>
         <div class="col-md-1">
