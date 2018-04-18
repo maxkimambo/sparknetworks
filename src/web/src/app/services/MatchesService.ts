@@ -1,13 +1,15 @@
-import {User} from './User'; 
+import {User, IUser} from './User'; 
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs'; 
 //mock data 
 
 
 @Injectable()
 export class MatchesService {
-    users: User[];
-        constructor(){
+    users: IUser[];
+        constructor(private http: HttpClient){
             const Users: User[] = [
                 { displayName: "Colette",
                   age: 39,
@@ -46,6 +48,19 @@ export class MatchesService {
             this.users = Users; 
         }
     getUsers(): User[]{
+
         return this.users; 
     }
+
+    getAllUsers():Observable<IUser[]> {
+      return this.http.get<IUser[]>('http://localhost:3000/matches')
+        .pipe(catchError(this.handleError<IUser[]>('getUsers')));
+       
+    }
+    private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+          console.error(error);
+          return Observable.of(result as T);
+        }
+      }
 }

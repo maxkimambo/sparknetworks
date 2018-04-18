@@ -11,13 +11,13 @@ export class CardComponent implements OnInit{
   
   users: User[]; 
 
-  constructor(){
+  constructor(private matchService: MatchesService){
    
   }
  
   ngOnInit() {
-    let matchService = new MatchesService(); 
-    this.users = matchService.getUsers();
+    // let matchService = new MatchesService(); 
+    this.users = this.matchService.getUsers();
     
   }
 

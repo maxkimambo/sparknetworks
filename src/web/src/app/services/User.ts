@@ -9,7 +9,24 @@ export class User {
     age: number;
     jobTitle: String;
     height: number;
-    city: city;
+    city?: city;
+    photo: String;
+    compatibility: number;
+    contacts: number;
+    favourite: boolean;
+    religion: String;
+}
+
+export interface IUser {
+    displayName: String;
+    age: number;
+    jobTitle: String;
+    height: number;
+    city?: {
+        name: string;
+        lat: number;
+        lon: number;
+    }
     photo: String;
     compatibility: number;
     contacts: number;

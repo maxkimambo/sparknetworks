@@ -13,7 +13,7 @@ const getCurrentUser = function () {
       name: 'Swindon',
       lat: 51.5541145,
       lon: -1.7976947,
-    }, 
+    },
     main_photo: 'https://randomuser.me/api/portraits/men/5.jpg',
     compatibility_score: 0.89,
     contacts_exchanged: 2,
@@ -51,16 +51,17 @@ const getFilters = function (req) {
     height,
   } = req.query;
 
+  if (!Object.keys(req.query).length) return;
+  const positiveParams = ['true', 'True', 'yes', 'Yes'];
   const filters = {
-    photo: photo === 'yes',
-    favourites: favourites === 'yes',
-    contact: contact === 'yes',
+    photo: positiveParams.includes(photo),
+    favourites: positiveParams.includes(favourites),
+    contact: positiveParams.includes(contact),
     distance: parseInt(distance, 10),
     age: parseRange(age),
     compatibility: parseRange(compatibility),
     height: parseRange(height),
   };
-
   return filters;
 };
 
@@ -70,10 +71,11 @@ const Controller = {
     // add logs with varying levels e.g info, debug, warn, error
     const ctx = req.app_context;
     const filters = getFilters(req);
+
     log.debug(`Request: filters ${JSON.stringify(filters)}`, ctx);
-    const currentUser = getCurrentUser(); 
+    const currentUser = getCurrentUser();
     const filteredData = matchesService.getMatches(filters, currentUser);
-   
+
 
     log.info('Matches route requested', ctx);
 

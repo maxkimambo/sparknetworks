@@ -9,6 +9,7 @@ import { JumbotronComponent} from './components/app.jumbotron';
 import { FooterComponent } from './components/app.footer';
 import { CardComponent } from './components/app.card';
 import {AppComponent} from './app.component'; 
+import { MatchesService } from './services/MatchesService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import {AppComponent} from './app.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MatchesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
