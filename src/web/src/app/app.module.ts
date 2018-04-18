@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule }   from '@angular/forms';
 
 import { FilterComponent } from './components/app.filter';
 import { HeaderComponent} from './components/app.header';
@@ -15,10 +15,12 @@ import {AppComponent} from './app.component';
     HeaderComponent,
     JumbotronComponent,
     FooterComponent,
-    CardComponent
+    CardComponent, 
+   
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

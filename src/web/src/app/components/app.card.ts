@@ -18,7 +18,7 @@ export class CardComponent implements OnInit{
   ngOnInit() {
     let matchService = new MatchesService(); 
     this.users = matchService.getUsers();
-    console.log(this.users);
+    
   }
 
 };
