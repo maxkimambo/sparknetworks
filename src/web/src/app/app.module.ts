@@ -7,9 +7,10 @@ import { HeaderComponent} from './components/app.header';
 import { JumbotronComponent} from './components/app.jumbotron';
 import { FooterComponent } from './components/app.footer';
 import { CardComponent } from './components/app.card';
-
+import {AppComponent} from './app.component'; 
 @NgModule({
   declarations: [
+    AppComponent,
     FilterComponent,
     HeaderComponent,
     JumbotronComponent,
@@ -20,6 +21,6 @@ import { CardComponent } from './components/app.card';
     BrowserModule
   ],
   providers: [],
-  bootstrap: [ HeaderComponent, JumbotronComponent, FooterComponent, CardComponent, FilterComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
