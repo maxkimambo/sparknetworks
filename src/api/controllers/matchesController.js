@@ -13,7 +13,7 @@ const getCurrentUser = function () {
       name: 'Swindon',
       lat: 51.5541145,
       lon: -1.7976947,
-    }, 
+    },
     main_photo: 'https://randomuser.me/api/portraits/men/5.jpg',
     compatibility_score: 0.89,
     contacts_exchanged: 2,
@@ -51,17 +51,45 @@ const getFilters = function (req) {
     height,
   } = req.query;
 
+  if (!Object.keys(req.query).length) return;
+  const positiveParams = ['true', 'True', 'yes', 'Yes'];
   const filters = {
-    photo: photo === 'yes',
-    favourites: favourites === 'yes',
-    contact: contact === 'yes',
+    photo: positiveParams.includes(photo),
+    favourites: positiveParams.includes(favourites),
+    contact: positiveParams.includes(contact),
     distance: parseInt(distance, 10),
     age: parseRange(age),
     compatibility: parseRange(compatibility),
     height: parseRange(height),
   };
-
   return filters;
+};
+
+/** Transforms data to match the UI  */
+const transformData = function (_matches) {
+  // replace pics with some real faces 
+  const photoUrl = 'https://randomuser.me/api/portraits/women/';
+  let counter = 1;
+  const matches = _matches.map((m) => {
+    counter += 1;
+    return {
+      displayName: m.display_name,
+      age: m.age,
+      compatibility: m.compatibility_score,
+      contacts: m.contacts_exchanged,
+      favourite: m.favourite,
+      height: m.height_in_cm,
+      jobTitle: m.jobTitle,
+      photo: `${photoUrl}${counter}.jpg`,
+      religion: m.religion,
+      city: {
+        name: m.city.name ? m.city.name : 'N/A',
+        lon: m.city.lon ? m.city.lon : 0,
+        lat: m.city.lat ? m.city.lat : 0,
+      },
+    };
+  });
+  return matches; 
 };
 
 const Controller = {
@@ -70,14 +98,15 @@ const Controller = {
     // add logs with varying levels e.g info, debug, warn, error
     const ctx = req.app_context;
     const filters = getFilters(req);
+
     log.debug(`Request: filters ${JSON.stringify(filters)}`, ctx);
-    const currentUser = getCurrentUser(); 
+    const currentUser = getCurrentUser();
     const filteredData = matchesService.getMatches(filters, currentUser);
-   
+    const transformedData = transformData(filteredData); 
 
     log.info('Matches route requested', ctx);
 
-    res.send(filteredData);
+    res.send(transformedData);
   },
 };
 

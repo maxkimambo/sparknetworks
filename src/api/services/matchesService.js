@@ -27,12 +27,20 @@ const matchesService = function () {
         return true;
     };
     const ageFilter = function (user) {
+        if (Number.isNaN(filters.age.lower) || Number.isNaN(filters.age.upper)) return true;
         return user.age >= filters.age.lower && user.age <= filters.age.upper;
     };
 
+    const heightFilter = function (user) {
+        if (Number.isNaN(filters.height.lower) || Number.isNaN(filters.height.upper)) return true;
+        return user.height_in_cm >= filters.height.lower && user.height_in_cm <= filters.height.upper;
+    };
     const compatibilityFilter = function (user) {
-        return user.compatibility_score >= filters.compatibility.lower / 100 &&
-            user.compatibility_score <= filters.compatibility.upper / 100;
+        if (Number.isNaN(filters.compatibility.upper) || Number.isNaN(filters.compatibility.lower)) return true;
+        const isCompatible = user.compatibility_score >= filters.compatibility.lower / 100 &&
+        user.compatibility_score <= filters.compatibility.upper / 100;
+        
+        return isCompatible; 
     };
 
 
@@ -52,24 +60,30 @@ const matchesService = function () {
     };
 
     const distanceFilter = function (user) {
+     
+        if (Number.isNaN(filters.distance)) {
+            return true;
+        }
         const currentDistance = distance(
             user.city.lat,
             user.city.lon,
             currentUser.city.lat,
             currentUser.city.lon,
         );
-        const isWithinRange = currentDistance <= (filters.distance * 1000);
-
+        const isWithinRange = currentDistance <= (filters.distance * 1000); // distance in m
+     
         return isWithinRange;
     };
     // end helper functions 
 
     const filterData = function (_filters) {
         filters = _filters;
-        const filteredData = data.filter(hasPhoto)
+        const filteredData = data
+            .filter(hasPhoto)
             .filter(isFavourite)
             .filter(hasContacts)
             .filter(ageFilter)
+            .filter(heightFilter)
             .filter(compatibilityFilter)
             .filter(distanceFilter);
 
@@ -77,9 +91,14 @@ const matchesService = function () {
     };
 
     const getMatches = function (_filters, _currentUser) {
-        currentUser = _currentUser;
-        const matches = filterData(_filters);
-        return matches;
+        if (_filters) {
+            currentUser = _currentUser;
+            const matches = filterData(_filters);
+
+            return matches;
+        }
+
+        return data;
     };
 
     return {

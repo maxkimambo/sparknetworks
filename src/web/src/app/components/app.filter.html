@@ -1,0 +1,134 @@
+<form (ngSubmit)="onSubmit()" #filterForm="ngForm">
+  <div class="card filter">
+    <div class="card-header">
+      Filter
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Photo -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="photo" name="photo" [(ngModel)]="vm.photo">
+            <label class="form-check-label" for="photo">
+              Photo
+            </label>
+          </div>
+        </div>
+        <!-- end Photo -->
+        <!-- contact -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="contact" name="contact" [(ngModel)]="vm.contact" >
+            <label class="form-check-label" for="contact">
+              Contacts
+            </label>
+          </div>
+        </div>
+  
+        <!-- end contact -->
+  
+        <!-- favourites -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="favourites" name="favourites" [(ngModel)]="vm.favourites">
+            <label class="form-check-label" for="favourites">
+              Favourites
+            </label>
+          </div>
+        </div>
+        <!-- endfavourites -->
+  
+        <!-- distance -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <span class="item-label">30</span>
+            <input class="form-check-input" type="range" min="30" max="300" name="distance" [(ngModel)]="vm.distance" id="distance">
+            <span class="item-label">300</span>
+            <label class="form-check-label" for="distance">
+              Distance
+            </label>
+          </div>
+        </div>
+        <!-- end distance -->
+        <!-- age -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <label class="form-control-label" for="start-age">
+              <span class="item-label"> Age</span>
+            </label>
+            <select name="startAge" [(ngModel)]="vm.startAge" class="form-control form-control-sm" id="start-age">
+              <option *ngFor="let a of ageValues" [ngValue]="a">{{a}}</option>
+            </select>
+            -
+            <select  name="endAge" [(ngModel)]="vm.endAge"  class="form-control form-control-sm" id="end-age">
+              <option *ngFor="let a of ageValues" [ngValue]="a">{{a}}</option>
+            </select>
+          </div>
+        </div>
+  
+  
+        <!-- end age -->
+        <!-- height -->
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <label class="form-control-label" for="start-height">
+              <span class="item-label"> Height</span>
+            </label>
+  
+            <select name="startHeight" [(ngModel)]="vm.startHeight" class="form-control form-control-sm" id="start-height">
+              <option *ngFor="let h of heightValues" [ngValue]="h">{{h}}</option>
+            </select>
+            -
+            <select name="endHeight" [(ngModel)]="vm.endHeight" class="form-control form-control-sm" id="end-height">
+  
+              <option *ngFor="let h of heightValues" [ngValue]="h">{{h}}</option>
+  
+  
+            </select>
+  
+  
+  
+          </div>
+        </div>
+        <!-- end height -->
+      </div>
+      <!--end row-->
+      <div class="row">
+        <div class="col-md-11">
+         
+          <!-- compatibility -->
+          <div class="form-check form-check-inline">
+            <label class="form-control-label" for="start-height">
+              <span class="item-label"> Compatibility</span>
+            </label>
+  
+            <select name="startCompatibility" [(ngModel)]="vm.startCompatibility" class="form-control form-control-sm" id="start-compatibility">
+              <option *ngFor="let c of compatibilityValues" [ngValue]="c">{{c}}</option>
+            </select>
+            -
+            <select name="endCompatibility" [(ngModel)]="vm.endCompatibility" class="form-control form-control-sm" id="end-compatibility">
+  
+              <option *ngFor="let c of compatibilityValues" [ngValue]="c">{{c}}</option>
+  
+  
+            </select>
+  
+  
+  
+          </div>
+          <!-- end compatibility -->
+         
+        </div>
+        <div class="col-md-1">
+          <button type="button" (click)="onSubmit()" class="btn btn-primary filter-btn">Filter</button>
+        </div>
+  
+  
+      </div>
+  
+    </div>
+  </div>
+  
+
+
+</form>

@@ -1,3 +1,5 @@
 node_modules/
 src/public/doc/
 .vscode/
+src/web/node_modules/
+src/web/dist/
