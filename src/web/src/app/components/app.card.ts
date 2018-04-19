@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { MatchesService } from '../services/MatchesService';
 import { User } from '../services/User';
 @Component({
@@ -11,10 +11,7 @@ export class CardComponent implements OnInit {
 
   @Input()  users: User[];
 
-  constructor(private matchService: MatchesService) {
-
-  }
-
+ 
   ngOnInit() {
 
   }
