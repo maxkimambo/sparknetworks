@@ -10,13 +10,22 @@ import { User } from './services/User';
 export class AppComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private matchService: MatchesService){
-    
+  constructor(private matchService: MatchesService) {
+
   }
   ngOnInit(): void {
+
     this.matchService.getAllUsers().subscribe(data => {
       this.users = data;
     });
   }
- 
+
+  handleFilters($event): void {
+
+    this.matchService.getFilteredUsers($event).subscribe(filteredData => {
+
+      this.users = filteredData;
+    })
+  }
+
 }
