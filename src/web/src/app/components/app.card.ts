@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatchesService } from '../services/MatchesService';
 import { User } from '../services/User';
 @Component({
@@ -9,17 +9,13 @@ import { User } from '../services/User';
 })
 export class CardComponent implements OnInit {
 
-  users: User[] = [];
+  @Input()  users: User[];
 
   constructor(private matchService: MatchesService) {
 
   }
 
   ngOnInit() {
-
-    this.matchService.getAllUsers().subscribe(data => {
-      this.users = data;
-    });
 
   }
 
