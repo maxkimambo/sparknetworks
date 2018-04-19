@@ -10,6 +10,7 @@ import { FooterComponent } from './components/app.footer';
 import { CardComponent } from './components/app.card';
 import {AppComponent} from './app.component'; 
 import { MatchesService } from './services/MatchesService';
+import { CardListComponent } from './components/app.card.list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { MatchesService } from './services/MatchesService';
     JumbotronComponent,
     FooterComponent,
     CardComponent, 
+    CardListComponent,
    
   ],
   imports: [

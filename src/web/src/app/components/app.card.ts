@@ -9,12 +9,8 @@ import { User } from '../services/User';
 })
 export class CardComponent implements OnInit {
 
-  @Input()  users: User[];
-
-  constructor(private matchService: MatchesService) {
-
-  }
-
+  @Input()  user: User;
+  
   ngOnInit() {
 
   }
