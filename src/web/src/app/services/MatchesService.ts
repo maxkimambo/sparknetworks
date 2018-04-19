@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { Location } from '@angular/common';
 //mock data 
 
 
@@ -10,12 +11,12 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 export class MatchesService {
 
     users: User[];
-
+    currentHost = ''; 
     constructor(private http: HttpClient) {
-
+        this.currentHost = window.location.host;
     }
     private getUrl(filters: any): string {
-        let url = `http://localhost:9000/matches?contacts=${filters.contacts}&photo=${filters.photo}
+        let url = `http://${this.currentHost}/matches?contacts=${filters.contacts}&photo=${filters.photo}
         &favourites=${filters.favourites}
         &distance=${filters.distance}
         &age=${filters.startAge}-${filters.endAge}
@@ -37,7 +38,7 @@ export class MatchesService {
     }
 
     getAllUsers(): Observable<User[]> {
-        return this.http.get<User[]>('http://localhost:9000/matches')
+        return this.http.get<User[]>(`http://${this.currentHost}/matches`)
             .pipe(catchError(this.handleError<User[]>('getUsers')));
 
     }
