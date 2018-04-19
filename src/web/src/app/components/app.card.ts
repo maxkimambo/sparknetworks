@@ -9,9 +9,9 @@ import { User } from '../services/User';
 })
 export class CardComponent implements OnInit {
 
-  @Input()  users: User[];
 
- 
+  @Input()  user: User;
+  
   ngOnInit() {
 
   }

@@ -1,40 +1,49 @@
-
-.card{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    min-width: 250px;
-    margin: 10px;
-    text-align:left;
-    padding: 10px;
-    padding-bottom: 25px;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  min-width: 250px;
+  margin: 10px;
+  text-align: left;
+  padding: 10px;
+  padding-bottom: 25px;
 }
+
 .title {
-    color: grey;
-    font-size: 18px;
-    text-align: center;
-}
-.display-name {
-    margin-top: 5px;
-    text-align: center;
-}
-.head-shot{
-    align-self: center;
+  color: grey;
+  font-size: 18px;
+  text-align: center;
 }
 
-.description{
-    line-height: 75%;
-    padding-left: 50px;
-    color: #e22620;
+.display-name {
+  margin-top: 5px;
+  text-align: center;
 }
+
+.head-shot {
+  align-self: center;
+}
+
+.description {
+  line-height: 75%;
+  padding-left: 50px;
+  color: #e22620;
+}
+
 .star {
-    color: white;
-    font-size:1.5em;
+  color: white;
+  font-size: 1.5em;
 }
+
 .is-favorite {
-    color: yellow;
-    font-size:1.5em;
+  color: yellow;
+  font-size: 1.5em;
 }
-.empty{
-    padding-top: 20px;
-    padding-left: 30px;
+
+.empty {
+  padding-top: 20px;
+  padding-left: 30px;
+}
+
+.spacer {
+  margin-left: 30px;
 }

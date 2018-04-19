@@ -10,7 +10,7 @@ import { User } from './services/User';
 export class AppComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private matchService: MatchesService, private changeDetector: ChangeDetectorRef) {
+  constructor(private matchService: MatchesService) {
 
   }
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     this.matchService.getFilteredUsers($event).subscribe(filteredData => {
 
       this.users = filteredData;
-      this.changeDetector.detectChanges(); // have to call manually to update the images/ 
+     
     })
   }
 
