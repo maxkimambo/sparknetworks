@@ -22,11 +22,25 @@ export class FilterComponent implements OnInit {
 
   onClear(){
     this.clearFilterResultEvent.emit(); 
+    this.setToDefault(); 
   }
   onSubmit() {
 
     this.filterResultsEvent.emit(this.vm);
 
+  }
+  setToDefault(){
+    this.vm = {};
+    this.vm.photo = false;
+    this.vm.contacts = false;
+    this.vm.favourites = false;
+    this.vm.startAge = 18;
+    this.vm.endAge = 95;
+    this.vm.startHeight = 135;
+    this.vm.endHeight = 210;
+    this.vm.distance = 300;
+    this.vm.startCompatibility = 1;
+    this.vm.endCompatibility = 99;
   }
   ngOnInit(): void {
 
@@ -41,16 +55,6 @@ export class FilterComponent implements OnInit {
       this.compatibilityValues.push(c);
     }
     // setting sensible defaults
-    this.vm = {};
-    this.vm.photo = false;
-    this.vm.contact = false;
-    this.vm.favourites = false;
-    this.vm.startAge = 18;
-    this.vm.endAge = 95;
-    this.vm.startHeight = 135;
-    this.vm.endHeight = 210;
-    this.vm.distance = 300;
-    this.vm.startCompatibility = 1;
-    this.vm.endCompatibility = 99;
+    this.setToDefault(); 
   }
 };

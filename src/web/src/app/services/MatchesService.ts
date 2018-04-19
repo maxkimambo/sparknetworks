@@ -15,7 +15,7 @@ export class MatchesService {
 
     }
     private getUrl(filters: any): string {
-        let url = `http://localhost:9000/matches?contact=${filters.contact}&photo=${filters.photo}
+        let url = `http://localhost:9000/matches?contacts=${filters.contacts}&photo=${filters.photo}
         &favourites=${filters.favourites}
         &distance=${filters.distance}
         &age=${filters.startAge}-${filters.endAge}

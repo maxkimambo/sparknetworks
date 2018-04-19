@@ -23,7 +23,7 @@ const matchesService = function () {
 
     const hasContacts = function (user) {
         if (filters.contacts) {
-            return user.contacts > 0;
+            return user.contacts >= 1;
         }
         return true;
     };
