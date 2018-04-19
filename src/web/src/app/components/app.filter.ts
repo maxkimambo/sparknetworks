@@ -13,12 +13,16 @@ export class FilterComponent implements OnInit {
   constructor(private matchService: MatchesService) {
   }
   @Output() filterResultsEvent = new EventEmitter();
+  @Output() clearFilterResultEvent = new EventEmitter(); 
 
   heightValues = [];
   ageValues = [];
   compatibilityValues = [];
   vm: any
 
+  onClear(){
+    this.clearFilterResultEvent.emit(); 
+  }
   onSubmit() {
 
     this.filterResultsEvent.emit(this.vm);
@@ -45,8 +49,8 @@ export class FilterComponent implements OnInit {
     this.vm.endAge = 95;
     this.vm.startHeight = 135;
     this.vm.endHeight = 210;
-    this.vm.distance = 30;
-    this.vm.startCompatibility = 70;
+    this.vm.distance = 300;
+    this.vm.startCompatibility = 1;
     this.vm.endCompatibility = 99;
   }
 };

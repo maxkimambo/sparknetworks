@@ -19,7 +19,10 @@ export class AppComponent implements OnInit {
       this.users = data;
     });
   }
-
+  handleClearFilters($event):void{
+    // reinitialise the page with original data. 
+    this.ngOnInit(); 
+  }
   handleFilters($event): void {
 
     this.matchService.getFilteredUsers($event).subscribe(filteredData => {
