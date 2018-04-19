@@ -9,7 +9,8 @@
     "start": "npm run doc && node src/server.js",
     "lint": "eslint --fix --quiet  *",
     "dev": "nodemon server.js",
-    "doc": "apidoc -c . -i ./src/api/  -o ./src/public/doc"
+    "doc": "apidoc -c . -i ./src/api/  -o ./src/public/doc",
+    "build": ""
   },
   "keywords": [],
   "author": "Max Kimambo",

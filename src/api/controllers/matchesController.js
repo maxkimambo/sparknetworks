@@ -44,7 +44,7 @@ const getFilters = function (req) {
   const {
     photo,
     favourites,
-    contact,
+    contacts,
     distance,
     age,
     compatibility,
@@ -56,7 +56,7 @@ const getFilters = function (req) {
   const filters = {
     photo: positiveParams.includes(photo),
     favourites: positiveParams.includes(favourites),
-    contact: positiveParams.includes(contact),
+    contacts: positiveParams.includes(contacts),
     distance: parseInt(distance, 10),
     age: parseRange(age),
     compatibility: parseRange(compatibility),
