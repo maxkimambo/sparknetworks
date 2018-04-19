@@ -8,10 +8,10 @@
     <div class="container">
 
       <div class="row">
-        <app-filter></app-filter>
+        <app-filter (filterResultsEvent)="handleFilters($event)"></app-filter>
       </div>
       <div class="row">
-           <app-card></app-card> 
+           <app-card [users]="users"></app-card> 
       </div>
     </div>
   </div>

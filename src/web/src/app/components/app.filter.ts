@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatchesService } from '../services/MatchesService';
 
 
 @Component({
@@ -9,14 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  constructor(private matchService: MatchesService) {
+  }
+  @Output() filterResultsEvent = new EventEmitter();
+
   heightValues = [];
   ageValues = [];
   compatibilityValues = [];
   vm: any
 
   onSubmit() {
-    // send the data to the api
-    console.log(this.vm);
+
+    this.filterResultsEvent.emit(this.vm);
+
   }
   ngOnInit(): void {
 
@@ -43,6 +49,4 @@ export class FilterComponent implements OnInit {
     this.vm.startCompatibility = 70;
     this.vm.endCompatibility = 99;
   }
-
-
 };

@@ -1,66 +1,52 @@
-import {User, IUser} from './User'; 
+import { User } from './User';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs'; 
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 //mock data 
 
 
 @Injectable()
 export class MatchesService {
+
     users: User[];
-        constructor(private http: HttpClient){
-            const Users: User[] = [
-                { displayName: "Colette",
-                  age: 39,
-                  jobTitle:  "Doctor - Hospital",
-                  height: 177, 
-                  city: { name: "Swindon", lat: 51.568535, lon: -1.772232 },
-                  photo: "https://randomuser.me/api/portraits/women/94.jpg",
-                  compatibility: 0.89,
-                  contacts: 2, 
-                  favourite: false,
-                  religion: "Christian"
-                },
-                { displayName: "Stephanie",
-                age: 33,
-                jobTitle:  "Project Manager",
-                height: 160, 
-                city: { name: "London", lat: 51.509865, lon: -0.118092},
-                photo: "https://randomuser.me/api/portraits/women/54.jpg",
-                compatibility: 0.87,
-                contacts: 4, 
-                favourite: false,
-                religion: "Christian"
-              },
-              { displayName: "Claire",
-              age: 48,
-              jobTitle:  "Doctor - Hospital",
-              height: 167, 
-              city: { name: "London", lat: 51.509865, lon: -0.118092},
-              photo: "https://randomuser.me/api/portraits/women/78.jpg",
-              compatibility: 0.84,
-              contacts: 6, 
-              favourite: true,
-              religion: "Atheist"
-            }
-            ];
-            this.users = Users; 
-        }
-    getUsers(): User[]{
 
-        return this.users; 
+    constructor(private http: HttpClient) {
+
+    }
+    private getUrl(filters: any): string {
+        let url = `http://localhost:9000/matches?contact=${filters.contact}&photo=${filters.photo}
+        &favourites=${filters.favourites}
+        &distance=${filters.distance}
+        &age=${filters.startAge}-${filters.endAge}
+        &height=${filters.startHeight}-${filters.endHeight}
+        &compatibility=${filters.startCompatibility}-${filters.endCompatibility}`;
+        url = url.replace(/ /gi,''); // need to replace unwanted empty spaces
+        return url;
+    }
+    setFilters(data: any) {
+        const url = this.getUrl(data);
     }
 
-    getAllUsers():Observable<User[]> {
-      return this.http.get<User[]>('http://localhost:9000/matches')
-        .pipe(catchError(this.handleError<User[]>('getUsers')));
-       
+    getFilteredUsers(filters: any): Observable<User[]> {
+
+        const url = this.getUrl(filters);
+
+        return this.http.get<User[]>(url)
+            .pipe(catchError(this.handleError<User[]>('getUsers')));
     }
-    private handleError<T> (operation = 'operation', result?: T) {
+
+    getAllUsers(): Observable<User[]> {
+        return this.http.get<User[]>('http://localhost:9000/matches')
+            .pipe(catchError(this.handleError<User[]>('getUsers')));
+
+    }
+
+    
+    private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-          console.error(error);
-          return Observable.of(result as T);
+            console.error(error);
+            return Observable.of(result as T);
         }
-      }
+    }
 }
