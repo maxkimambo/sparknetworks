@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatchesService } from './services/MatchesService';
 import { User } from './services/User';
 
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     this.matchService.getFilteredUsers($event).subscribe(filteredData => {
 
       this.users = filteredData;
+     
     })
   }
 

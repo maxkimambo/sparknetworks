@@ -1,0 +1,11 @@
+<div class="row">
+  <div *ngFor="let user of users">
+    <app-card [user]="user"></app-card>
+  </div>
+</div>
+
+<div class="row empty" *ngIf="users.length == 0">
+  <div class="alert alert-danger" role="alert">
+    No results found for given criteria
+  </div>
+</div>
