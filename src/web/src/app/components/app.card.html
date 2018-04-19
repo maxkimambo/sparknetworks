@@ -1,17 +1,19 @@
-<div class="card col-md-4">
-  <div class="star" [ngClass]="{'is-favorite': user.favourite}">
-    <i class="fas fa-star"></i>
-  </div>
-  <img class="rounded-circle head-shot img-fluid" width="140" height="140" [src]="user.photo" alt="{{user.displayName}}">
-  <h5 class="display-name">{{user.displayName}} , {{user.age}}</h5>
-  <p class="title"> {{user.jobTitle}} </p>
-  <p class="description"> City: {{user.city.name}} </p>
-  <p class="description">Height: {{user.height}} cm</p>
-  <p class="description">Religion: {{user.religion}}</p>
-  <p class="description">Contacts: {{user.contacts}}</p>
-
-
-  <div class="description" style="color: rgb(255, 51, 0)">
-    <i class="fas fa-certificate"> {{user.compatibility * 100}} %</i> Compatibility
-  </div>
+<div class="spacer">
+    <div class="card col-md-4">
+        <div class="star" [ngClass]="{'is-favorite': user.favourite}">
+          <i class="fas fa-star"></i>
+        </div>
+        <img class="rounded-circle head-shot img-fluid" width="140" height="140" [src]="user.photo" alt="{{user.displayName}}">
+        <h5 class="display-name">{{user.displayName}} , {{user.age}}</h5>
+        <p class="title"> {{user.jobTitle}} </p>
+        <p class="description"> City: {{user.city.name}} </p>
+        <p class="description">Height: {{user.height}} cm</p>
+        <p class="description">Religion: {{user.religion}}</p>
+        <p class="description">Contacts: {{user.contacts}}</p>
+      
+      
+        <div class="description" style="color: rgb(255, 51, 0)">
+          <i class="fas fa-certificate"> {{user.compatibility * 100}} %</i> Compatibility
+        </div>
+      </div>
 </div>
