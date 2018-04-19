@@ -11,11 +11,11 @@ const dataService = () => {
         
             return {
                 displayName: m.display_name,
-                age: parseInt(m.age),
-                compatibility: Number.parseFloat(m.compatibility_score),
-                contacts: parseInt(m.contacts_exchanged),
+                age: m.age,
+                compatibility: m.compatibility_score,
+                contacts: m.contacts_exchanged,
                 favourite: m.favourite,
-                height: parseInt(m.height_in_cm),
+                height: m.height_in_cm,
                 jobTitle: m.job_title ? m.job_title : '-',
                 photo: `${photoUrl}${counter}.jpg`,
                 religion: m.religion,
@@ -32,7 +32,7 @@ const dataService = () => {
     const getData = function () {
          
         const transformedData = transform(data);
-        // console.log(transformedData);
+    
         return transformedData;
     };
 
