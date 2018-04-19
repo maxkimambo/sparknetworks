@@ -1,4 +1,5 @@
-const data = require('../../../db/matches').matches;
+// const data = require('../../../db/matches').matches;
+const data = require('./dataService').getData();
 
 const matchesService = function () {
     let filters;
@@ -6,7 +7,7 @@ const matchesService = function () {
     /** Helper  functions for filtering data */
     const hasPhoto = function (user) {
         if (filters.photo) {
-            if (!user.main_photo || user.main_photo.length > 0) {
+            if (!user.photo || user.photo.length > 0) {
                 return true;
             }
             return false;
@@ -22,7 +23,7 @@ const matchesService = function () {
 
     const hasContacts = function (user) {
         if (filters.contacts) {
-            return user.contacts_exchanged > 0;
+            return user.contacts > 0;
         }
         return true;
     };
@@ -33,14 +34,14 @@ const matchesService = function () {
 
     const heightFilter = function (user) {
         if (Number.isNaN(filters.height.lower) || Number.isNaN(filters.height.upper)) return true;
-        return user.height_in_cm >= filters.height.lower && user.height_in_cm <= filters.height.upper;
+        return user.height >= filters.height.lower && user.height <= filters.height.upper;
     };
     const compatibilityFilter = function (user) {
         if (Number.isNaN(filters.compatibility.upper) || Number.isNaN(filters.compatibility.lower)) return true;
-        const isCompatible = user.compatibility_score >= filters.compatibility.lower / 100 &&
-        user.compatibility_score <= filters.compatibility.upper / 100;
-        
-        return isCompatible; 
+        const isCompatible = user.compatibility >= filters.compatibility.lower / 100 &&
+            user.compatibility <= filters.compatibility.upper / 100;
+
+        return isCompatible;
     };
 
 
@@ -60,7 +61,7 @@ const matchesService = function () {
     };
 
     const distanceFilter = function (user) {
-     
+
         if (Number.isNaN(filters.distance)) {
             return true;
         }
@@ -71,7 +72,7 @@ const matchesService = function () {
             currentUser.city.lon,
         );
         const isWithinRange = currentDistance <= (filters.distance * 1000); // distance in m
-     
+
         return isWithinRange;
     };
     // end helper functions 
@@ -91,6 +92,7 @@ const matchesService = function () {
     };
 
     const getMatches = function (_filters, _currentUser) {
+    
         if (_filters) {
             currentUser = _currentUser;
             const matches = filterData(_filters);
